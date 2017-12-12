@@ -1,0 +1,14 @@
+
+public class Individual {
+
+	City city;
+	public Individual() {
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

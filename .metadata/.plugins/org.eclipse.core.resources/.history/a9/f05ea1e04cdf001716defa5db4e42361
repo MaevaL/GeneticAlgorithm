@@ -1,0 +1,15 @@
+
+public class Individual {
+
+	City city;
+	
+	public Individual() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

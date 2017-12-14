@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+
+public class City {
+
+	private int indexCity = 0;
+	private static index = 0;
+	private ArrayList<Vec2> location;
+	
+	
+	public City() {
+		indexCity++;
+	}
+	
+	public City(int indexCity) {
+		this.indexCity = indexCity; 
+	}
+
+}

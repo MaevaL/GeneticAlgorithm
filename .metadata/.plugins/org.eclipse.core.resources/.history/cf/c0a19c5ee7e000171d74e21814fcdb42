@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+public class PathBetweenTwoCities {
+	
+	private float distanceBetweenTwoCities;
+	private City start;
+	private City end;
+	public static ArrayList<PathBetweenTwoCities> pathArray = new ArrayList<PathBetweenTwoCities>();
+	public static ArrayList<ArrayList<PathBetweenTwoCities>> matriceArray = new ArrayList<ArrayList<PathBetweenTwoCities>>();
+
+	public PathBetweenTwoCities(City start, City end) {
+		this.start = start;
+		this.end = end;
+		distanceBetweenTwoCities = calculDistanceBetweenTwoCities();
+	}
+	
+	private float calculDistanceBetweenTwoCities() {
+		return start.getLocation().getDistance(end.getLocation());
+	}
+	
+}
+

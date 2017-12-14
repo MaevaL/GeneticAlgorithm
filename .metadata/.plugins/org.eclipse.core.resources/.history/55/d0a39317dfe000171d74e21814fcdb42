@@ -1,0 +1,17 @@
+
+public class Path {
+	
+	private float distanceBetweenTwoCities;
+	private City start;
+	private City end;
+
+	public Path(City start, City end) {
+		this.start = start;
+		this.end = end;
+	}
+	
+	private float calculDistanceBetweenTwoCities() {
+		return start.getLocation().getDistance(end.getLocation());
+	}
+
+}

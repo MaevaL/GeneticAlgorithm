@@ -1,0 +1,10 @@
+
+public class City {
+
+	static int indexCity;
+	
+	public City() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

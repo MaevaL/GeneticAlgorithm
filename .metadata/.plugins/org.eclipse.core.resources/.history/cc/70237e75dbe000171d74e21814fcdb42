@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+
+public class City {
+
+	private int indexCity = 0;
+	private static int index = 0;
+	private Vec2 location;
+	public static ArrayList<City> citiesArray;
+	
+	
+	public City() {
+		if(index == 0) {
+			index++;
+			indexCity = index;
+			// generate location
+			citiesArray.add(this);
+		} else {
+			while(IsThisLocationTaken()) {
+				//GenerateLocation
+			}
+		}
+		
+		
+		
+		
+	}
+	
+	public City(int indexCity) {
+		this.indexCity = indexCity; 
+	}
+	
+	public Boolean IsThisLocationTaken(Vec2 location) {
+		for(City c : citiesArray){
+			if(c.location == location) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+}

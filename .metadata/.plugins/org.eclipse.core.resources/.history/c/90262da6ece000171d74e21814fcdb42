@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+public class PathTraveler {
+	public static ArrayList<ArrayList<City>>pathTravelerArray = new ArrayList<ArrayList<City>>();
+	
+	public PathTraveler() {
+		
+	}
+	
+	public void GenerateAPathBetweenAllCities(Random random) {		
+		Random generator = new Random();
+		int randomNumber;
+			ArrayList<City> cityList = City.citiesArray;
+			for(int j = 0; j < City.citiesArray.size(); j++) {
+				randomNumber = Math.abs(generator.nextInt()) % cityList.size();
+				PathTraveler.pathTravelerArray..add(cityList.get(randomNumber));
+				cityList.remove(randomNumber);
+			}
+		}
+	}
+
+}

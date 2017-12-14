@@ -109,6 +109,10 @@ public class Vec2 {
 	public void showVec() {
 		System.out.println("<" + x + "," + y + ">");
 	}
+	
+	public String toString() {
+		return new String("< " + x + " , " + y + ">");
+	}
 
 
 }

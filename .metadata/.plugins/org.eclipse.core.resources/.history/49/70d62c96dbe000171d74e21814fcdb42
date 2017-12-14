@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+public class City {
+
+	private int indexCity = 0;
+	private static int index = 0;
+	private Vec2 location;
+	public static ArrayList<City> citiesArray;
+	
+	
+	public City(long seed, Random generator) {
+		if(index == 0) {
+			index++;
+			indexCity = index;
+			location = GenerateRandomLocation()
+			citiesArray.add(this);
+		} else {
+			while(IsThisLocationTaken()) {
+				//GenerateLocation
+			}
+		}
+		
+		
+		
+		
+	}
+	
+	public City(int indexCity) {
+		this.indexCity = indexCity; 
+	}
+	
+	public Boolean IsThisLocationTaken(Vec2 location) {
+		for(City c : citiesArray){
+			if(c.location == location) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Vec2 GenerateRandomLocation(long seed, Random generator) {
+		 return new Vec2(generator.nextFloat() * (2), generator.nextFloat() * (2));
+	}
+
+}

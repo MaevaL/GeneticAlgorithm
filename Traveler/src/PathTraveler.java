@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 
 public class PathTraveler {
-	public static ArrayList<ArrayList<City>>pathTravelerArray = new ArrayList<ArrayList<City>>();
-	public static ArrayList<Float> DistArrayByPath = new ArrayList<Float>();
+	public static List<List<City>>pathTravelerArray = new ArrayList<List<City>>();
+	public static int indexBest;
 	
 	public PathTraveler() {
 		
@@ -27,31 +31,70 @@ public class PathTraveler {
 		float dist = 0;
 		for(int j = 0; j < City.citiesArray.size(); j++) {
 			if(j == City.citiesArray.size() - 1) {
-				PathBetweenTwoCities path = new PathBetweenTwoCities(pathTravelerArray.get(pathIndex).get(0), pathTravelerArray.get(pathIndex).get(j));
-				DistArrayByPath.add(pathIndex, path.getDistance());
+				PathBetweenTwoCities path = new PathBetweenTwoCities(pathTravelerArray.get(pathIndex).get(0), pathTravelerArray.get(pathIndex).get(j));				
 				dist += path.getDistance();	
 				break;
 			}
 			PathBetweenTwoCities path = new PathBetweenTwoCities(pathTravelerArray.get(pathIndex).get(j), pathTravelerArray.get(pathIndex).get(j+1));
-			DistArrayByPath.add(pathIndex, path.getDistance());
 			dist += path.getDistance();	
 		}
 		return dist;
 	}
 	
+	public static float getDistance(List<City> array) {
+		float dist = 0;
+		for(int j = 0; j < array.size(); j++) {
+			if(j == array.size() - 1) {
+				PathBetweenTwoCities path = new PathBetweenTwoCities(array.get(0), array.get(j));				
+				dist += path.getDistance();	
+				break;
+			}
+			PathBetweenTwoCities path = new PathBetweenTwoCities(array.get(j), array.get(j+1));
+			dist += path.getDistance();	
+		}
+		return dist;
+	}
 	
+	public static float getBestDistance() {
+		float bestDist = Float.POSITIVE_INFINITY;
+		float dist1 = 0;
+		float dist2 = 0;
+		int indexPath = -1;
+		for(int i = 0; i < pathTravelerArray.size() - 1; i++) {
+			dist1 = getDistanceForAPath(i);
+			dist2 = getDistanceForAPath(i+1);
+			if(dist1 < dist2 && dist1 < bestDist) {
+				bestDist = dist1;
+				indexPath = i;
+			} else if (dist2 < dist1 && dist2 < bestDist) {	
+				bestDist = dist2;
+				indexPath = i+1;
+			}
+		}
+		indexBest = indexPath;
+		return bestDist;
+	}
 	
-//	public float getDistanceForAnIndividual(int indexIndividual) {
-//		float dist = 0;
-//		for(int j = 0; j < nbCities; j++) {
-//			if(j == (nbCities - 1)) {
-//				dist += distance[individual[indexIndividual][0]][individual[indexIndividual][j]];
-//				break;
-//			}
-//			dist += distance[individual[indexIndividual][j+1]][individual[indexIndividual][j]];
-//		}
-//		
-//		return dist;
-//	}	
+	public static List getNBest(int n) {
+		List<List<City>> temporary = new ArrayList<List<City>>(pathTravelerArray);
+		Collections.sort(temporary, new Comparator<List<City>>() {
+
+			@Override
+			public int compare(List<City> o1, List<City> o2) {
+				float d1 = getDistance(o1);
+				float d2 = getDistance(o2);
+				
+				if(d1 > d2) {
+					return 1;
+				} else if (d1 < d2) {
+					return -1;
+				} else {
+					return 0;
+				}
+			}
+		});
 		
+		return temporary.subList(0, n);
+	}
+	
 }

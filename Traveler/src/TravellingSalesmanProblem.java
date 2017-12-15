@@ -1,8 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class TravellingSalesmanProblem {
 
 	public TravellingSalesmanProblem() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public List<List<City>> crossOver(List<List<City>> p1, List<List<City>> p2) {
+		List<List<City>> crossed = new ArrayList<List<City>>();
+		int cut = p1.size()/2;
+		
+		for(int i = 0; i < cut; i++) {
+			crossed.add(p1.get(i));
+		}
+		
+		for(int j = 0; j < p2.size(); j++) {
+			if(!crossed.contains(p2.get(j))) {
+				crossed.add(p2.get(j));
+			}
+		}
+		
+		return crossed;
 	}
 
 	public static void main(String[] args) {
@@ -29,8 +48,17 @@ public class TravellingSalesmanProblem {
 		}
 		
 		for(int i = 0; i < PathTraveler.pathTravelerArray.size(); i++) {
-			System.out.println(PathTraveler.getDistanceForAPath(i));
-		}
-
+//			System.out.println(PathTraveler.getDistanceForAPath(i));
+			System.out.println(PathTraveler.getDistance(PathTraveler.pathTravelerArray.get(i)));
+		}		
+		
+		
+		System.out.println("Best distance : " + PathTraveler.getBestDistance());
+		
+		List<List<City>> sortingBest = PathTraveler.getNBest(5);
+		
+		for(int i = 0; i < sortingBest.size(); i++) {
+			System.out.println(PathTraveler.getDistance(sortingBest.get(i)));
+		}		
 	}
 }

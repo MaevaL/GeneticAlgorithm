@@ -8,20 +8,16 @@ public class City {
 	private Vec2 location;
 	public static ArrayList<City> citiesArray = new ArrayList<City>();
 	
-	public City(long seed, Random generator) {
+	public City() {
 		index++;
 		indexCity = index;
 		if(index == 0) {	
-			location = generateRandomLocation(seed, generator);
+			location = generateRandomLocation(Generation.generator);
 		} else {
-			Vec2 temporaryLocation = generateRandomLocation(seed, generator);
+			Vec2 temporaryLocation = generateRandomLocation(Generation.generator);
 			while(isThisLocationTaken(temporaryLocation)) {}
 			location = temporaryLocation;
 		}				
-	}
-	
-	public City() {
-		location = new Vec2(0,0);
 	}
 	
 	public Vec2 getLocation() {
@@ -42,7 +38,7 @@ public class City {
 		return false;
 	}
 	
-	public Vec2 generateRandomLocation(long seed, Random generator) {
+	public Vec2 generateRandomLocation(Random generator) {
 		 return new Vec2(generator.nextFloat() * (2), generator.nextFloat() * (2));
 	}
 	

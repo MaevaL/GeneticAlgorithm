@@ -2,16 +2,16 @@ import java.util.Random;
 
 public class Generation {
 	long seed;
-	Random random;
+	public static Random generator;
 	
 	public Generation(long seed) {
 		this.seed = seed;
-		random = new Random(seed);
+		generator = new Random(seed);
 	}
 	
 	public void GenerateCities(int nbCities) {
 		for(int i = 0; i < nbCities; i++) {
-			City.citiesArray.add(new City(seed, random));
+			City.citiesArray.add(new City());
 		}		
 	}
 }

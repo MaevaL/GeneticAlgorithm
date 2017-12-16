@@ -15,12 +15,11 @@ public class PathTraveler {
 	}
 	
 	public static void GenerateAPathBetweenAllCities() {		
-		Random generator = new Random();
 		int randomNumber;
 		ArrayList<City> c = new ArrayList<City>();
 		ArrayList<City> cityList = new ArrayList<City>(City.citiesArray);
 		for(int j = 0; j < City.citiesArray.size(); j++) {
-			randomNumber = Math.abs(generator.nextInt()) % cityList.size();
+			randomNumber = Math.abs(Generation.generator.nextInt()) % cityList.size();
 			c.add(cityList.get(randomNumber));
 			cityList.remove(randomNumber);
 		}
@@ -75,7 +74,7 @@ public class PathTraveler {
 		return bestDist;
 	}
 	
-	public static List getNBest(int n) {
+	public static List<List<City>> getNBest(int n) {
 		List<List<City>> temporary = new ArrayList<List<City>>(pathTravelerArray);
 		Collections.sort(temporary, new Comparator<List<City>>() {
 

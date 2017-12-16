@@ -1,0 +1,81 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class TravellingSalesmanProblem {
+
+	public TravellingSalesmanProblem() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public static List<List<City>> crossOver(List<List<City>> p1, List<List<City>> p2) {
+		List<List<City>> crossed = new ArrayList<List<City>>();
+		int cut = p1.size()/2;
+		
+		for(int i = 0; i < cut; i++) {
+			crossed.add(p1.get(i));
+			System.out.println(p1.get(i).get(i).toString());
+			
+		}
+		
+		//System.out.println(crossed.toString());
+		
+		for(int j = 0; j < p2.size(); j++) {
+			if(!crossed.contains(p2.get(j))) {
+				crossed.add(p2.get(j));
+			}
+		}
+		//System.out.println(crossed.toString());
+		
+		return crossed;
+	}
+
+	public static void main(String[] args) {
+		Generation generation = new Generation(100);
+		generation.GenerateCities(10);
+		for(City city : City.citiesArray) {
+			System.out.println(city.toString());
+		}
+		
+		System.out.println("\n");
+		PathBetweenTwoCities.GenerateMatrice();
+		
+		for(PathBetweenTwoCities p : PathBetweenTwoCities.pathArray) {
+			System.out.println(p.toString());
+		}
+		
+		for(int i = 0; i < 10; i++) {
+			PathTraveler.GenerateAPathBetweenAllCities();
+		}
+		
+		for(int i = 0; i < PathTraveler.pathTravelerArray.size(); i++) {
+			for(int j =0; j < City.citiesArray.size(); j++)
+				System.out.println("IndexPath : " + PathTraveler.pathTravelerArray.indexOf(PathTraveler.pathTravelerArray.get(i))+ " CityIndex : " + PathTraveler.pathTravelerArray.get(i).get(j).getIndex());
+		}
+		
+		for(int i = 0; i < PathTraveler.pathTravelerArray.size(); i++) {
+//			System.out.println(PathTraveler.getDistanceForAPath(i));
+			System.out.println(PathTraveler.getDistance(PathTraveler.pathTravelerArray.get(i)));
+		}		
+		
+		
+		System.out.println("Best distance : " + PathTraveler.getBestDistance());
+		
+		List<List<City>> sortingBest = PathTraveler.getNBest(5);
+		
+		for(int i = 0; i < sortingBest.size(); i++) {
+			System.out.println(PathTraveler.getDistance(sortingBest.get(i)));
+		}
+		
+		List<List<City>> p1 = new ArrayList<List<City>>();
+		p1.add(PathTraveler.pathTravelerArray.get(0));
+		System.out.println(p1.toString());
+		List<List<City>> p2 = new ArrayList<List<City>>();
+		//p2.add(PathTraveler.pathTravelerArray.get(1));
+		System.out.println(p2.toString());
+		
+		List<List<City>> resultCrossed = TravellingSalesmanProblem.crossOver(p1, p2);
+		//System.out.println(resultCrossed.toString());
+		
+		
+	}
+}

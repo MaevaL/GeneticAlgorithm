@@ -1,0 +1,53 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+public class City {
+
+	private int indexCity = 0;
+	private static int index = -1;
+	private Vec2 location;
+	public static ArrayList<City> citiesArray = new ArrayList<City>();
+	
+	public City() {
+		index++;
+		indexCity = index;
+		if(index == 0) {	
+			location = generateRandomLocation(Generation.generator);
+		} else {
+			Vec2 temporaryLocation = generateRandomLocation(Generation.generator);
+			while(isThisLocationTaken(temporaryLocation)) {}
+			location = temporaryLocation;
+		}				
+	}
+	
+	public City(int i) {
+		location = new Vec2(0,0);
+	}
+	
+	public Vec2 getLocation() {
+		return location;
+	}
+	
+	public int getIndex() {
+		return indexCity;
+	}
+	
+	
+	public Boolean isThisLocationTaken(Vec2 location) {
+		for(City c : citiesArray){
+			if(c.location == location) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Vec2 generateRandomLocation(Random generator) {
+		 return new Vec2(generator.nextFloat() * (2), generator.nextFloat() * (2));
+	}
+	
+	public String toString() {
+		return new String("Index : " + indexCity + " location : " + location.toString());
+	}
+
+}

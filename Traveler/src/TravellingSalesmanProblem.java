@@ -105,10 +105,10 @@ public class TravellingSalesmanProblem extends Frame{
 		/*********************************************************************************************************/
 		
 		int seed = 100;
-		int nbCity = 20;
-		int nbGen = 200;
-		int nbBest = 10;
-		int nbIndivual = 100;
+		int nbCity = 50;
+		int nbGen = 1000;
+		int nbBest = 30;
+		int nbIndivual = 300;
 
 		
 		//Initial population
